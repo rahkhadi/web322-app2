@@ -1,0 +1,59 @@
+<!-- sets.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lego Sets Collection</title>
+  <link rel="stylesheet" href="/css/main.css" />
+
+</head>
+
+<body tabindex="-1">
+  <%- include('partials/navbar', { page: '/lego/sets' }) %>
+  <br />
+
+  <div class="container mx-auto">
+    <div class="hero bg-base-200 rounded-lg p-6">
+      <div class="hero-content text-center">
+        <div class="max-w-md">
+          <h1 class="text-5xl font-bold">Collection</h1>
+            <p>Browse the entire collection. Click the theme to filter by themes such as:</p>
+            <a href="/lego/sets?theme=TECHNIC" class="btn btn-primary m-2">TECHNIC</a>
+            <a href="/lego/sets?theme=CLASSIC TOWN" class="btn btn-primary m-2">CLASSIC TOWN</a>
+            <a href="/lego/sets?theme=SUPPLEMENTAL" class="btn btn-primary m-2">SUPPLEMENTAL</a>
+          </div>
+      </div>
+    </div>
+
+    <br />
+
+    <table class="table w-full">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Theme</th>
+          <th>Year</th>
+          <th>Parts</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% sets.forEach(function(set) { %>
+          <tr>
+            <td><img src="<%= set.img_url %>" alt="<%= set.name %>" class="w-12 h-12 rounded-full"></td>
+            <td><%= set.name %></td>
+            <td><a class="btn btn-primary" href="/lego/sets?theme=<%= set.theme %>"><%= set.theme %></a></td>
+            <td><%= set.year %></td>
+            <td><%= set.num_parts %></td>
+            <td><a class="btn btn-primary" href="/lego/sets/<%= set.set_num %>">Details</a></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>
